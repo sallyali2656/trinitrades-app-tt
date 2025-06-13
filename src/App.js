@@ -45,8 +45,8 @@ const App = () => {
           onChange={handleChange}
           className="border p-2 w-full"
         >
-          <option value="customer">Customer</option>
-          <option value="tradesperson">Tradesperson</option>
+          <option value="tradesperson">Customer</option>
+          <option value="customer">Tradesperson</option>
         </select>
         {form.type === 'tradesperson' && (
           <>
