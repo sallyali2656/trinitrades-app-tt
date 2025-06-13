@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 
 const App = () => {
   const [users, setUsers] = useState([]);
-  const [form, setForm] = useState({ name: '', type: 'customer', trade: '', location: '' });
+  const [form, setForm] = useState({
+    name: '',
+    type: 'customer',
+    trade: '',
+    location: '',
+    contact: '',
+  });
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -10,7 +16,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsers([...users, form]);
-    setForm({ name: '', type: 'customer', trade: '', location: '' });
+    setForm({ name: '', type: 'customer', trade: '', location: '', contact: '' });
   };
 
   const tradespeople = users.filter(user =>
@@ -58,6 +64,13 @@ const App = () => {
               onChange={handleChange}
               className="border p-2 w-full"
             />
+            <input
+              name="contact"
+              placeholder="Contact Number"
+              value={form.contact}
+              onChange={handleChange}
+              className="border p-2 w-full"
+            />
           </>
         )}
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
@@ -78,7 +91,8 @@ const App = () => {
         <ul className="space-y-2">
           {tradespeople.map((user, idx) => (
             <li key={idx} className="p-2 border rounded">
-              <strong>{user.name}</strong> - {user.trade} ({user.location})
+              <strong>{user.name}</strong> - {user.trade} ({user.location})<br />
+              📞 {user.contact}
             </li>
           ))}
         </ul>
